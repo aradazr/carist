@@ -2,11 +2,11 @@ import 'package:carist/data/task_type.dart';
 import 'package:flutter/material.dart';
 
 class TaskTypeItemList extends StatelessWidget {
-   TaskType taskType;
-   int index;
-  int selectedItemList;
+   final TaskType taskType;
+  final int index;
+  final int selectedItemList;
 
-  TaskTypeItemList({
+  const TaskTypeItemList({
     super.key,
     required this.taskType,
     required this.index,

@@ -97,6 +97,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                 Text(
                   overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.end,
+                    // ignore: unnecessary_null_comparison
                     jalaliDate != null ? formatJalaliDate(jalaliDate) : 'تاریخ نامشخص',
                     style: const TextStyle(
                       fontSize: 15,
