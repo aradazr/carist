@@ -1,5 +1,6 @@
 import 'package:carist/Screens/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -35,7 +36,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 width: double.infinity,
               ),
               SizedBox(height: size.height / 4.5),
-              Image.asset('assets/images/welcome.png'),
+              Image.asset('assets/images/welcome.png',fit: BoxFit.fill,),
               const Text(
                 'هر آنچه که\n !برای ماشینت نیاز داری',
                 textAlign: TextAlign.center,
@@ -49,7 +50,7 @@ class _WelcomePageState extends State<WelcomePage> {
               SizedBox(height: size.height / 70),
               const Text(
                 textAlign: TextAlign.center,
-                'اطلاعات ماشینت رو ذخیره کن و\nتعویض روغن یا قطعات و فیلترات و\n هرچیز دیگه ای رو هیچوقت فراموش نکن\n .همه چیو ثبت کن',
+                'اطلاعات ماشینت رو ذخیره کن و\nتعویض روغن یا قطعات و فیلترات و\n هرچیز دیگه ای رو هیچوقت فراموش نکن و\n .همه چیو ثبت کن',
                 style: TextStyle(
                   color: Color.fromARGB(255, 161, 161, 161),
                   height: 1.6,
@@ -58,7 +59,9 @@ class _WelcomePageState extends State<WelcomePage> {
               SizedBox(height: size.height / 27),
               InkWell(
                 borderRadius: BorderRadius.circular(38),
-                onTap: () {
+                onTap: () async {
+                   var box = Hive.box('settingsBox');
+                await box.put('hasSeenIntro', true);  // ذخیره‌سازی اینکه کاربر صفحه خوشامدگویی را دیده است
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return const HomePage();
                   },));

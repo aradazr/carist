@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-
 import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -14,7 +13,6 @@ class MyDrawer extends StatefulWidget {
 
 class _MyDrawerState extends State<MyDrawer> {
   final List<bool> _isOpen = [false, false, false, false];
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +39,10 @@ class _MyDrawerState extends State<MyDrawer> {
                   ),
                 ),
               ),
-      
-             
-              
+
               ListView(
                 padding: const EdgeInsets.only(top: 200),
                 children: <Widget>[
-                  
                   ExpansionPanelList(
                     dividerColor: Colors.transparent,
                     expandIconColor: Colors.transparent,
@@ -80,30 +75,57 @@ class _MyDrawerState extends State<MyDrawer> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container(
-                                alignment: Alignment.center,
-                                height: size.height / 18,
-                                width: size.width / 4.5,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white),
-                                child: const Text(
-                                  'درگاه ایرانی',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold),
+                              InkWell(
+                                radius: 10,
+                                onTap: () async {
+                                  final Uri url =
+                                      Uri.parse('https://zarinp.al/aradazr');
+                                  if (!await launchUrl(url)) {
+                                    throw Exception('Could not launch');
+                                  }
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: size.height / 21,
+                                  width: size.width / 4,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white),
+                                  child: const Text(
+                                    'درگاه ایرانی',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
-                              Container(
-                                alignment: Alignment.center,
-                                height: size.height / 18,
-                                width: size.width / 4.5,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white),
-                                child: const Text(
-                                  'درگاه خارجی',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold),
+                              InkWell(
+                                onTap: () {
+                                  var snackBar = SnackBar(
+                                    content: Text(
+                                      'این بخش فعال نمیباشد',
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    backgroundColor: Colors.red,
+                                    behavior: SnackBarBehavior.fixed,
+                                    duration: const Duration(seconds: 2),
+                                  );
+                                  Navigator.of(context)
+                                      .pop(); // بسته شدن Drawer
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar); // نمایش Snackbar
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: size.height / 21,
+                                  width: size.width / 4,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white),
+                                  child: const Text(
+                                    'درگاه خارجی',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                             ],
@@ -111,7 +133,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         ),
                         isExpanded: _isOpen[0],
                       ),
-              
+
                       //! ExpansionPanel for دعوت از دوستان
                       ExpansionPanel(
                         canTapOnHeader: true,
@@ -142,7 +164,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         ),
                         isExpanded: _isOpen[1],
                       ),
-              
+
                       //! ExpansionPanel for درباره ی برنامه
                       ExpansionPanel(
                         canTapOnHeader: true,
@@ -169,7 +191,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         ),
                         isExpanded: _isOpen[2],
                       ),
-              
+
                       //! ExpansionPanel for ارتباط با سازنده
                       ExpansionPanel(
                         canTapOnHeader: true,
@@ -187,57 +209,135 @@ class _MyDrawerState extends State<MyDrawer> {
                             ),
                           );
                         },
-                        body: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(width: size.width),
-                            InkWell(
-                              onTap: () async {
-                                final Uri url =
-                                    Uri.parse('https://t.me/aradazr');
-                                if (!await launchUrl(url)) {
-                                  throw Exception('Could not launch');
-                                }
-                              },
-                              child: ListTile(
-                                leading: Image.asset(
-                                  'assets/images/telegram.png',
-                                  height: 35,
-                                ),
-                                title: const Text(
-                                  'Telegram',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                  ),
-                                ),
+                        body: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  final Uri url =
+                                      Uri.parse('https://t.me/aradazr');
+                                  if (!await launchUrl(url)) {
+                                    throw Exception('Could not launch');
+                                  }
+                                },
+                                child: Container(
+                                    alignment: Alignment.center,
+                                    height: size.height / 21,
+                                    width: size.width / 4,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/telegram.png',
+                                          height: 20,
+                                        ),
+                                        SizedBox(width: size.width / 170),
+                                        const Text(
+                                          'Telegram',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    )),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () async {
-                                final Uri url =
-                                    Uri.parse('https://mail.google.com/mail/u/0/#inbox');
-                                if (!await launchUrl(url)) {
-                                  throw Exception('Could not launch');
-                                }
-                              },
-                              child: ListTile(
-                                leading: Image.asset(
-                                  'assets/images/gmail.png',
-                                  height: 35,
-                                ),
-                                title: const Text(
-                                  'Gmail',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                  ),
-                                ),
+                              InkWell(
+                                onTap: () async {
+                                  final Uri emailLaunchUri = Uri(
+                                    scheme: 'mailto',
+                                    path: 'aradazarpanah27@gmail.com',
+                                    query:
+                                        'subject=Your Subject Here&body=Your Message Here',
+                                  );
+
+                                  if (!await launchUrl(emailLaunchUri)) {
+                                    throw 'Could not launch $emailLaunchUri';
+                                  }
+                                },
+                                child: Container(
+                                    alignment: Alignment.center,
+                                    height: size.height / 21,
+                                    width: size.width / 4,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/gmail.png',
+                                          height: 20,
+                                        ),
+                                        SizedBox(width: size.width / 170),
+                                        const Text(
+                                          'Gmail',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    )),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
+                        // body: Column(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: [
+                        //     SizedBox(width: size.width),
+                        //     InkWell(
+                        //       onTap: () async {
+                        //         final Uri url =
+                        //             Uri.parse('https://t.me/aradazr');
+                        //         if (!await launchUrl(url)) {
+                        //           throw Exception('Could not launch');
+                        //         }
+                        //       },
+                        //       child: ListTile(
+                        //         tileColor: Colors.redAccent,
+                        //         leading: Image.asset(
+                        //           'assets/images/telegram.png',
+                        //           height: 20,
+                        //         ),
+                        //         title: const Text(
+                        //           'Telegram',
+                        //           style: TextStyle(
+                        //             color: Colors.white,
+                        //             fontSize: 14,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     InkWell(
+                        //       onTap: () async {
+                        //         final Uri url = Uri.parse(
+                        //             'https://mail.google.com/mail/u/0/#inbox');
+                        //         if (!await launchUrl(url)) {
+                        //           throw Exception('Could not launch');
+                        //         }
+                        //       },
+                        //       child: ListTile(
+                        //         leading: Image.asset(
+                        //           'assets/images/gmail.png',
+                        //           height: 35,
+                        //         ),
+                        //         title: const Text(
+                        //           'Gmail',
+                        //           style: TextStyle(
+                        //             color: Colors.white,
+                        //             fontSize: 18,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         isExpanded: _isOpen[3],
                       ),
                     ],
