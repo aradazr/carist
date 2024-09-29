@@ -51,6 +51,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     });
     _selectedTaskTypeItem = index;
   }
+  final GlobalKey appBarKey = GlobalKey(); 
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 
     return Scaffold(
       drawer: const MyDrawer(),
-      appBar: const MyAppBar(),
+      appBar:  MyAppBar(appBarKey: appBarKey,),
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(

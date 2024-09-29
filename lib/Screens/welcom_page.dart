@@ -36,7 +36,10 @@ class _WelcomePageState extends State<WelcomePage> {
                 width: double.infinity,
               ),
               SizedBox(height: size.height / 4.5),
-              Image.asset('assets/images/welcome.png',fit: BoxFit.fill,),
+              Image.asset(
+                'assets/images/welcome.png',
+                fit: BoxFit.fill,
+              ),
               const Text(
                 'هر آنچه که\n !برای ماشینت نیاز داری',
                 textAlign: TextAlign.center,
@@ -60,21 +63,31 @@ class _WelcomePageState extends State<WelcomePage> {
               InkWell(
                 borderRadius: BorderRadius.circular(38),
                 onTap: () async {
-                   var box = Hive.box('settingsBox');
-                await box.put('hasSeenIntro', true);  // ذخیره‌سازی اینکه کاربر صفحه خوشامدگویی را دیده است
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const HomePage();
-                  },));
+                  var box = Hive.box('settingsBox');
+                  await box.put('hasSeenIntro',
+                      true); // ذخیره‌سازی اینکه کاربر صفحه خوشامدگویی را دیده است
+                  await box.put('hasSeenShowCase',
+                      false); // ذخیره‌سازی اینکه کاربر شو کیس‌ها را ندیده است
+
+                  // اضافه کردن تاخیر قبل از تغییر صفحه
+                  Future.delayed(Duration(milliseconds: 100), () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return HomePage(hasSeenShowCase: false);
+                    }));
+                  });
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  height: size.height /12,
-                  width: size.width /2.40,
+                  height: size.height / 12,
+                  width: size.width / 2.40,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(38),
-                    color: Colors.white
+                      borderRadius: BorderRadius.circular(38),
+                      color: Colors.white),
+                  child: const Text(
+                    '!شروع کنیم',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  child: const Text('!شروع کنیم',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                 ),
               )
             ],

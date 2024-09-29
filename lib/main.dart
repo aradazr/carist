@@ -1,11 +1,12 @@
 import 'package:carist/Screens/welcom_page.dart';
 
-import 'package:carist/Screens/home_page.dart';  // فرض اینکه HomePage وجود دارد
+import 'package:carist/Screens/home_page.dart'; // فرض اینکه HomePage وجود دارد
 import 'package:carist/data/task.dart';
 import 'package:carist/data/task_type.dart';
 import 'package:carist/data/type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 void main() async {
   // مقداردهی اولیه Hive
@@ -24,26 +25,31 @@ void main() async {
 
   // بررسی وضعیت مشاهده صفحه خوشامدگویی
   bool hasSeenIntro = settingsBox.get('hasSeenIntro', defaultValue: false);
+  bool hasSeenShowCase = settingsBox.get('hasSeenShowCase', defaultValue: false);
 
-  runApp(MyApp(hasSeenIntro: hasSeenIntro));
+  runApp(MyApp(hasSeenIntro: hasSeenIntro, hasSeenShowCase: hasSeenShowCase));
 }
 
 class MyApp extends StatelessWidget {
   final bool hasSeenIntro;
+  final bool hasSeenShowCase;
 
-  const MyApp({super.key, required this.hasSeenIntro});
+  const MyApp({super.key, required this.hasSeenIntro, required this.hasSeenShowCase});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Carist',
-      theme: ThemeData(
-        fontFamily: 'vazir',
-        useMaterial3: true,
+    return ShowCaseWidget(
+      builder: (context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Carist',
+        theme: ThemeData(
+          fontFamily: 'vazir',
+          useMaterial3: true,
+        ),
+        home: hasSeenIntro
+            ? HomePage(hasSeenShowCase: hasSeenShowCase)
+            : const WelcomePage(),
       ),
-      home: hasSeenIntro ? const HomePage() : const WelcomePage(),
-      
     );
   }
 }

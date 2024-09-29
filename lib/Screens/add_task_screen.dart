@@ -46,7 +46,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       setState(() {});
     });
   }
-
+final GlobalKey appBarKey = GlobalKey(); 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -56,7 +56,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       //! دارور
       drawer: const MyDrawer(),
       //! اپ بار
-      appBar: const MyAppBar(),
+      appBar:  MyAppBar(appBarKey: appBarKey,),
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.transparent,
       //! شروع صفحه
