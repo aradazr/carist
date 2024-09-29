@@ -40,9 +40,9 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          drawer: MyDrawer(),
+          drawer: const MyDrawer(),
           
-          appBar: MyAppBar(),
+          appBar: const MyAppBar(),
           
           floatingActionButton: Visibility(
             visible: isFabVisible,
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddTaskScreen(),
+                    builder: (context) => const AddTaskScreen(),
                   ),
                 );
               },
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                 height: size.height / 13.61,
                 width: size.width / 6.29,
                 decoration: BoxDecoration(
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                         color: Colors.black, spreadRadius: 0, blurRadius: 10),
                   ],
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                     return true;
                   },
                   child: taskBox.values.isEmpty
-                      ? Center(
+                      ? const Center(
                           child: Text(
                             textAlign: TextAlign.center,
                             'هنوز هیچ کاری اضافه\n !نکردی',

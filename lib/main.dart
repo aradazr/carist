@@ -1,5 +1,6 @@
 
-import 'package:carist/Screens/home_page.dart';
+
+import 'package:carist/Screens/welcom_page.dart';
 import 'package:carist/data/task.dart';
 import 'package:carist/data/task_type.dart';
 import 'package:carist/data/type_enum.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'vazir',
         useMaterial3: true,
       ),
-      home: HomePage(),
+      home: const WelcomePage(),
     );
   }
 }

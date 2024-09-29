@@ -31,12 +31,12 @@ class _WelcomePageState extends State<WelcomePage> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 width: double.infinity,
               ),
               SizedBox(height: size.height / 4.5),
               Image.asset('assets/images/welcome.png'),
-              Text(
+              const Text(
                 'هر آنچه که\n !برای ماشینت نیاز داری',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -47,7 +47,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               SizedBox(height: size.height / 70),
-              Text(
+              const Text(
                 textAlign: TextAlign.center,
                 'اطلاعات ماشینت رو ذخیره کن و\nتعویض روغن یا قطعات و فیلترات و\n هرچیز دیگه ای رو هیچوقت فراموش نکن\n .همه چیو ثبت کن',
                 style: TextStyle(
@@ -60,7 +60,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 borderRadius: BorderRadius.circular(38),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return HomePage();
+                    return const HomePage();
                   },));
                 },
                 child: Container(
@@ -71,7 +71,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     borderRadius: BorderRadius.circular(38),
                     color: Colors.white
                   ),
-                  child: Text('!شروع کنیم',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  child: const Text('!شروع کنیم',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                 ),
               )
             ],

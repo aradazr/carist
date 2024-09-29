@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({
@@ -9,7 +8,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color.fromARGB(255, 11, 11, 11),
+      backgroundColor: const Color.fromARGB(255, 11, 11, 11),
       automaticallyImplyLeading: false,
       leading: InkWell(
         onTap: () {
@@ -23,6 +22,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
+  
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
