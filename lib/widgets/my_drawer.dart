@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,8 +13,6 @@ class MyDrawer extends StatefulWidget {
 
 class _MyDrawerState extends State<MyDrawer> {
   final List<bool> _isOpen = [false, false, false, false];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -103,14 +100,14 @@ class _MyDrawerState extends State<MyDrawer> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  var snackBar = SnackBar(
+                                  var snackBar = const SnackBar(
                                     content: Text(
                                       'این بخش فعال نمیباشد',
                                       textAlign: TextAlign.end,
                                     ),
                                     backgroundColor: Colors.red,
                                     behavior: SnackBarBehavior.fixed,
-                                    duration: const Duration(seconds: 2),
+                                    duration: Duration(seconds: 2),
                                   );
                                   Navigator.of(context)
                                       .pop(); // بسته شدن Drawer
@@ -213,7 +210,7 @@ class _MyDrawerState extends State<MyDrawer> {
                           );
                         },
                         body: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [

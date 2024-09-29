@@ -70,10 +70,10 @@ class _WelcomePageState extends State<WelcomePage> {
                       false); // ذخیره‌سازی اینکه کاربر شو کیس‌ها را ندیده است
 
                   // اضافه کردن تاخیر قبل از تغییر صفحه
-                  Future.delayed(Duration(milliseconds: 100), () {
+                  Future.delayed(const Duration(milliseconds: 100), () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return HomePage(hasSeenShowCase: false);
+                      return const HomePage(hasSeenShowCase: false);
                     }));
                   });
                 },

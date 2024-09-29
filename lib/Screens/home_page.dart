@@ -29,7 +29,7 @@ void initState() {
   super.initState();
   WidgetsBinding.instance.addPostFrameCallback((_) {
     if (!widget.hasSeenShowCase) {
-      Future.delayed(Duration(milliseconds: 100), () {
+      Future.delayed(const Duration(milliseconds: 100), () {
         setState(() {
           ShowCaseWidget.of(context).startShowCase([add, appBarKey]);
           Hive.box('settingsBox').put('hasSeenShowCase', true);
@@ -61,7 +61,7 @@ void initState() {
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          drawer:  MyDrawer(),
+          drawer:  const MyDrawer(),
           
           appBar:  MyAppBar(appBarKey: appBarKey,),
           
