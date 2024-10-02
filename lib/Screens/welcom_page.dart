@@ -71,6 +71,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
                   // اضافه کردن تاخیر قبل از تغییر صفحه
                   Future.delayed(const Duration(milliseconds: 100), () {
+                    // ignore: use_build_context_synchronously
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return const HomePage(hasSeenShowCase: false);
