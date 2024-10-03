@@ -60,7 +60,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 
     return Scaffold(
       drawer: const MyDrawer(),
-      appBar:  MyAppBar(appBarKey: appBarKey,),
+      appBar:  MyAppBar(appBarKey: appBarKey,icon: '',),
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(

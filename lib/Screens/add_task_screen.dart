@@ -56,7 +56,7 @@ final GlobalKey appBarKey = GlobalKey();
       //! دارور
       drawer: const MyDrawer(),
       //! اپ بار
-      appBar:  MyAppBar(appBarKey: appBarKey,),
+      appBar:  MyAppBar(appBarKey: appBarKey,icon: '',),
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.transparent,
       //! شروع صفحه
