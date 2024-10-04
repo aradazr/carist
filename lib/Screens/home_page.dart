@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   var settingsBox = Hive.box('settingsBox');
   final GlobalKey add = GlobalKey();
   final GlobalKey appBarKey = GlobalKey();
+  final GlobalKey searchKey = GlobalKey();
 
   @override
   void initState() {
@@ -33,7 +34,8 @@ class _HomePageState extends State<HomePage> {
       if (!widget.hasSeenShowCase) {
         Future.delayed(const Duration(milliseconds: 100), () {
           setState(() {
-            ShowCaseWidget.of(context).startShowCase([add, appBarKey]);
+            ShowCaseWidget.of(context).startShowCase([add, appBarKey,searchKey]);
+            
             Hive.box('settingsBox').put('hasSeenShowCase', true);
           });
         });
@@ -70,6 +72,8 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.transparent,
           drawer: const MyDrawer(),
           appBar: MyAppBar(
+            searchKey: searchKey,
+            isHomePage: true,
             appBarKey: appBarKey,
             icon: 'assets/images/search.png',
             showSearchIcon: true,

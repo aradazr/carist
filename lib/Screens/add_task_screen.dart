@@ -113,7 +113,11 @@ final GlobalKey appBarKey = GlobalKey();
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: TextField(
+                        cursorColor: Colors.blue,
+                        cursorErrorColor: Colors.blue,
+
                         maxLength: 12,
+                        
                         onTapOutside: (event) {
                           negahban1.unfocus();
                         },
