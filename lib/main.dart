@@ -7,6 +7,7 @@ import 'package:carist/data/type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:showcaseview/showcaseview.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   // مقداردهی اولیه Hive
@@ -27,7 +28,16 @@ void main() async {
   bool hasSeenIntro = settingsBox.get('hasSeenIntro', defaultValue: false);
   bool hasSeenShowCase = settingsBox.get('hasSeenShowCase', defaultValue: false);
 
-  runApp(MyApp(hasSeenIntro: hasSeenIntro, hasSeenShowCase: hasSeenShowCase));
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp, // فقط حالت عمودی رو به بالا
+    DeviceOrientation.portraitDown, // حالت عمودی رو به پایین
+  ]).then((_) {
+    runApp(MyApp(hasSeenIntro: hasSeenIntro, hasSeenShowCase: hasSeenShowCase));
+  });
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -46,7 +56,8 @@ class MyApp extends StatelessWidget {
           fontFamily: 'vazir',
           useMaterial3: true,
         ),
-        home: hasSeenIntro
+        home: 
+        hasSeenIntro
             ? HomePage(hasSeenShowCase: hasSeenShowCase)
             : const WelcomePage(),
       ),

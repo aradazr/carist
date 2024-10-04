@@ -116,6 +116,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: TextField(
+                        cursorColor: Colors.blue,
                         maxLength: 12,
                         onTapOutside: (event) {
                           negahban1.unfocus();
@@ -190,6 +191,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: TextField(
+                        keyboardType: TextInputType.number,
+                        cursorColor: Colors.blue,
                         maxLength: 10,
                         onTapOutside: (event) {
                           negahban2.unfocus();
@@ -201,7 +204,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           fillColor: Colors.white,
                           filled: true,
-                          hintText: 'برای مثال : تعویض روغن',
+                          hintText: 'برای مثال :  273465',
                           hintStyle: const TextStyle(
                             fontSize: 15,
                             color: Color.fromARGB(90, 0, 0, 0),
@@ -289,8 +292,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         borderRadius: BorderRadius.circular(10),
                         child: PCupertinoDatePicker(
                           mode: PCupertinoDatePickerMode.date,
-                          maximumYear: 1450,
-                          minimumYear: 1390,
+                          
                           onDateTimeChanged: (Jalali dateTime) {
                             // print(dateTime.day);
                             selectedDate = dateTime;
@@ -330,6 +332,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: TextField(
+                        cursorColor: Colors.blue,
                         maxLines: 2,
                         maxLength: 32,
                         onTapOutside: (event) {
@@ -437,6 +440,20 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         String taskTitle = controllerTaskTitle!.text;
                         String taskSubTitle = controllerTaskSubTitle!.text;
                         String tozih = controllerTaskTozih.text;
+                        if (taskTitle.isEmpty || taskSubTitle.isEmpty) {
+                          // نمایش پیام خطا
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text(
+                                'لطفاً تمام فیلدها را پر کنید.',
+                                textDirection: TextDirection.rtl,
+                              ),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                          return; // جلوگیری از ادامه تابع
+                        }
                         editTask(taskTitle, taskSubTitle, tozih);
                         Navigator.pop(context);
                       },

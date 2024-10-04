@@ -59,12 +59,12 @@ class _TaskWidgetState extends State<TaskWidget> {
                       ),
                     );
                   },
-                  child: Image.asset('assets/images/edit.png'),
+                  child: Image.asset('assets/images/edit.png',height: 18,),
                 ),
-                const SizedBox(),
+                 SizedBox(),
                 InkWell(
                   onTap: () => _dialogBuilder(context, widget.task),
-                  child: Image.asset('assets/images/trash.png'),
+                  child: Image.asset('assets/images/trash.png',height: 24,),
                 ),
               ],
             ),
@@ -77,17 +77,19 @@ class _TaskWidgetState extends State<TaskWidget> {
               children: [
                 SizedBox(
                   width: size.width / 3.4,
-                  height: size.height / 35,
+                  height: size.height / 29.5,
                   child: Text(
-                      textAlign: TextAlign.end,
+                    
+                      textAlign: TextAlign.start,
                       overflow: TextOverflow.ellipsis,
                       widget.task.title,
+                      textDirection: TextDirection.rtl,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
                       )),
                 ),
-                SizedBox(height: size.height / 200),
+                SizedBox(height: size.height / 500),
                 Text(
                     textAlign: TextAlign.end,
                     textDirection: TextDirection.rtl,

@@ -6,6 +6,7 @@ import 'package:carist/widgets/task_type_item.dart';
 import 'package:carist/utility/utility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
@@ -46,7 +47,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       setState(() {});
     });
   }
-final GlobalKey appBarKey = GlobalKey(); 
+
+  final GlobalKey appBarKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -56,7 +58,10 @@ final GlobalKey appBarKey = GlobalKey();
       //! دارور
       drawer: const MyDrawer(),
       //! اپ بار
-      appBar:  MyAppBar(appBarKey: appBarKey,icon: '',),
+      appBar: MyAppBar(
+        appBarKey: appBarKey,
+        icon: '',
+      ),
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.transparent,
       //! شروع صفحه
@@ -115,9 +120,7 @@ final GlobalKey appBarKey = GlobalKey();
                       child: TextField(
                         cursorColor: Colors.blue,
                         cursorErrorColor: Colors.blue,
-
                         maxLength: 12,
-                        
                         onTapOutside: (event) {
                           negahban1.unfocus();
                         },
@@ -193,6 +196,8 @@ final GlobalKey appBarKey = GlobalKey();
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: TextField(
+                        keyboardType: TextInputType.number,
+                        cursorColor: Colors.blue,
                         maxLength: 10,
                         onTapOutside: (event) {
                           negahban2.unfocus();
@@ -333,6 +338,7 @@ final GlobalKey appBarKey = GlobalKey();
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: TextField(
+                        cursorColor: Colors.blue,
                         maxLines: 2,
                         maxLength: 32,
                         onTapOutside: (event) {
@@ -445,6 +451,20 @@ final GlobalKey appBarKey = GlobalKey();
                         String taskTitle = controllerTaskTitle.text;
                         String taskSubTitle = controllerTaskSubTitle.text;
                         String tozih = controllerTaskTozih.text;
+                        if (taskTitle.isEmpty || taskSubTitle.isEmpty) {
+                          // نمایش پیام خطا
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text(
+                                'لطفاً تمام فیلدها را پر کنید.',
+                                textDirection: TextDirection.rtl,
+                              ),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                          return; // جلوگیری از ادامه تابع
+                        }
                         addTask(taskTitle, taskSubTitle, selectedDate, tozih);
                         Navigator.pop(context);
                       },
@@ -471,10 +491,10 @@ final GlobalKey appBarKey = GlobalKey();
       ),
     );
   }
+
 //! برای اضافه شدن و ذخیره ی تسک جدید
   addTask(String taskTitle, String taskSubTitle, Jalali? selectedDate,
       String tozih) {
-    
     // اگر تاریخ انتخاب نشده باشد، تاریخ جاری استفاده شود
     DateTime date =
         selectedDate != null ? selectedDate.toDateTime() : DateTime.now();

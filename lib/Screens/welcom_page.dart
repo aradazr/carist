@@ -35,9 +35,9 @@ class _WelcomePageState extends State<WelcomePage> {
               const SizedBox(
                 width: double.infinity,
               ),
-              SizedBox(height: size.height / 4.5),
+              SizedBox(height: size.height / 5.5),
               Image.asset(
-                'assets/images/welcome.png',
+                'assets/images/welcomm.png',height: size.height / 3.7,
                 fit: BoxFit.fill,
               ),
               const Text(

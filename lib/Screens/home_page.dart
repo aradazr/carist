@@ -128,6 +128,7 @@ class _HomePageState extends State<HomePage> {
                   child: Directionality(
                     textDirection: TextDirection.rtl,
                     child: TextField(
+                      cursorColor: Colors.blue,
                       maxLength: 20,
                       decoration: InputDecoration(
                         counterText: '',

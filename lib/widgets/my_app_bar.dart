@@ -29,12 +29,14 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (showSearchIcon) // نمایش آیکون جستجو فقط در صورت true بودن
           Padding(
-            padding: const EdgeInsets.only(right: 2),
+            padding: const EdgeInsets.only(right: 3),
             child: searchKey != null
                 ? Showcase(
                     key: searchKey!,
                     description: 'از این بخش یادداشت هاتو جستجو کن',
                     child: InkWell(
+                      borderRadius: BorderRadius.circular(50),
+                      
                       onTap: onSearchIconPressed,
                       child: Image.asset(
                         icon,
@@ -111,24 +113,47 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
       backgroundColor: const Color.fromARGB(255, 11, 11, 11),
       automaticallyImplyLeading: false,
+      leadingWidth: 40,
       leading: appBarKey != null
-          ? Showcase(
-              key: appBarKey!,
-              description: 'از اینجا با برنامه اشنا شو',
-              child: InkWell(
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                child: Image.asset('assets/images/appbarMenu.png'),
+          ? Padding(
+            padding: const EdgeInsets.only(left: 13),
+            child: Showcase(
+              showArrow: true,
+              
+                key: appBarKey!,
+                description: 'از اینجا با برنامه اشنا شو',
+                child: InkWell(
+                  
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: Image.asset(
+                      'assets/images/appbarMenu.png',
+                      color: Colors.white,
+                      
+                      
+                      
+                    ),
+                  ),
+                ),
               ),
-            )
+          )
           : InkWell(
               onTap: () {
                 Scaffold.of(context).openDrawer();
               },
-              child: Image.asset('assets/images/appbarMenu.png'),
+              child: Image.asset(
+                'assets/images/appbarMenu.png',
+                height: 100,
+                
+              ),
             ),
-      title: Image.asset('assets/images/appbarLogo.png'),
+      title: Image.asset(
+        'assets/images/appbarLogo.png',
+        height: 48,
+      ),
       centerTitle: true,
     );
   }
