@@ -19,8 +19,6 @@ class _MyDrawerState extends State<MyDrawer> {
       'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDAnnzcOL/YCxnB9Z1VxdYLPswV8LyWAnMKgIUBS8q2oxLZX4Aro0zAnr1wnU0G3q+7ME3qCl8uksYqSwKtGIaGSzS9TBSbJ51wtFL1INtiQFr20SdfqRqOPz7mmgl0gz7T0Vj8PwbU351MlaDsaLvmzivmnR8RHeCOtf2a8UjOpQIDAQAB';
   String selectDonate = "";
 
-
-
   //? دونیت انتخاب شده
   Future<bool> checkConnect() async {
     try {
@@ -71,7 +69,7 @@ class _MyDrawerState extends State<MyDrawer> {
       ),
       backgroundColor: Colors.green,
       behavior: SnackBarBehavior.fixed,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     Navigator.of(context).pop(); // بسته شدن Drawer
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -85,19 +83,19 @@ class _MyDrawerState extends State<MyDrawer> {
       ),
       backgroundColor: Colors.red,
       behavior: SnackBarBehavior.fixed,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     Navigator.of(context).pop(); // بسته شدن Drawer
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  Widget _amountButton(Size size, String amount, String donate,StateSetter setState) {
+  Widget _amountButton(
+      Size size, String amount, String donate, StateSetter setState) {
     return InkWell(
       onTap: () {
         setState(() {
           selectDonate = donate;
         });
-        
       },
       child: Container(
         alignment: Alignment.center,
@@ -111,8 +109,8 @@ class _MyDrawerState extends State<MyDrawer> {
         ),
         child: Text(
           amount,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.white),
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );
@@ -202,27 +200,29 @@ class _MyDrawerState extends State<MyDrawer> {
                                     context: context,
                                     builder: (context) {
                                       return StatefulBuilder(
-
-                                        builder: (context, setState) => BackdropFilter(
+                                        builder: (context, setState) =>
+                                            BackdropFilter(
                                           filter: ImageFilter.blur(
                                               sigmaX: 5, sigmaY: 5),
                                           child: Container(
                                             height: size.height / 3,
                                             width: size.width,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Colors.white,
                                               borderRadius: BorderRadius.only(
                                                   topLeft: Radius.circular(20),
-                                                  topRight: Radius.circular(20)),
+                                                  topRight:
+                                                      Radius.circular(20)),
                                             ),
                                             child: Column(
                                               children: [
                                                 SizedBox(
                                                   height: size.height / 20,
                                                 ),
-                                                Text(
+                                                const Text(
                                                   ':مبلغ مورد نظر خود را انتخاب کنید',
-                                                  style: TextStyle(fontSize: 18),
+                                                  style:
+                                                      TextStyle(fontSize: 18),
                                                 ),
                                                 SizedBox(
                                                   height: size.height / 30,
@@ -231,20 +231,26 @@ class _MyDrawerState extends State<MyDrawer> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    _amountButton(size, '20,000T',
-                                                        "donate1",setState),
+                                                    _amountButton(
+                                                        size,
+                                                        '20,000T',
+                                                        "donate1",
+                                                        setState),
                                                     SizedBox(
                                                       width: size.width / 30,
                                                     ),
-                                                    _amountButton(size, '40,000T',
-                                                        "donate2",setState),
+                                                    _amountButton(
+                                                        size,
+                                                        '40,000T',
+                                                        "donate2",
+                                                        setState),
                                                   ],
                                                 ),
                                                 SizedBox(
                                                   height: size.height / 80,
                                                 ),
-                                                _amountButton(
-                                                    size, '60,000T', "donate3",setState),
+                                                _amountButton(size, '60,000T',
+                                                    "donate3", setState),
                                                 SizedBox(
                                                   height: size.height / 40,
                                                 ),
@@ -261,8 +267,8 @@ class _MyDrawerState extends State<MyDrawer> {
                                                             color: Colors.blue,
                                                             width: 4),
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                30),
+                                                            BorderRadius
+                                                                .circular(30),
                                                         color: Colors.black),
                                                     child: const Text(
                                                       'تایید',
@@ -283,43 +289,13 @@ class _MyDrawerState extends State<MyDrawer> {
                                 },
                                 child: Container(
                                   alignment: Alignment.center,
-                                  height: size.height / 21,
-                                  width: size.width / 4,
+                                  height: size.height / 18,
+                                  width: size.width / 2,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.white),
                                   child: const Text(
                                     'درگاه ایرانی',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  var snackBar = const SnackBar(
-                                    content: Text(
-                                      'این بخش فعال نمیباشد',
-                                      textAlign: TextAlign.end,
-                                    ),
-                                    backgroundColor: Colors.red,
-                                    behavior: SnackBarBehavior.fixed,
-                                    duration: Duration(seconds: 2),
-                                  );
-                                  Navigator.of(context)
-                                      .pop(); // بسته شدن Drawer
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackBar); // نمایش Snackbar
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height: size.height / 21,
-                                  width: size.width / 4,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: const Text(
-                                    'درگاه خارجی',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
@@ -349,7 +325,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         },
                         body: InkWell(
                           onTap: () {
-                            var snackBar = SnackBar(
+                            var snackBar = const SnackBar(
                               content: Text(
                                 '...به زودی',
                                 textAlign: TextAlign.end,

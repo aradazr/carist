@@ -54,7 +54,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         if (isHomePage)
           PopupMenuButton<String>(
-            offset: Offset(0, 45),
+            offset: const Offset(0, 45),
             iconColor: Colors.white,
             iconSize: 30,
             color: Colors.white,
@@ -99,10 +99,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             itemBuilder: (BuildContext context) {
               return <PopupMenuEntry<String>>[
-                PopupMenuItem<String>(
+                const PopupMenuItem<String>(
                   height: 40,
                   value: 'delete_all',
-                  child: const Text(
+                  child: Text(
                     'حذف تمامی یادداشت ها',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),

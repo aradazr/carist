@@ -61,7 +61,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                   },
                   child: Image.asset('assets/images/edit.png',height: 18,),
                 ),
-                 SizedBox(),
+                 const SizedBox(),
                 InkWell(
                   onTap: () => _dialogBuilder(context, widget.task),
                   child: Image.asset('assets/images/trash.png',height: 24,),
