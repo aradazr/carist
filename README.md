@@ -26,7 +26,7 @@ With **Carist**, you can register and manage crucial details about your car anyt
     <img src="https://github.com/user-attachments/assets/eee2a815-5091-4bbd-b222-60dbfb11bdef" alt="Screenshot 1" width="300"/>
     <img src="https://github.com/user-attachments/assets/1c98788e-e859-4898-85d2-07143b0993e0" alt="Screenshot 2" width="300"/>
     <img src="https://github.com/user-attachments/assets/81f5de4e-867d-40fa-b4b7-78861d257ea7" alt="Screenshot 3" width="300"/>
-    <img src="https://github.com/user-attachments/assets/bc7e21b4-5940-4c6b-a3d0-677b15ae5529" alt="Screenshot 4" width="1000"/>
+    <img src="https://github.com/user-attachments/assets/bc7e21b4-5940-4c6b-a3d0-677b15ae5529" alt="Screenshot 4" width="900"/>
 </div>
 
 ---
